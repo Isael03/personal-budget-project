@@ -27,6 +27,11 @@ export function BudgetSummary({ data }: BudgetSummaryProps) {
   const totalExpenses = data.rent + data.utilities + data.groceries;
   const remainingMoney = data.income - totalExpenses;
   const savingsProgress = (remainingMoney / data.savings) * 100;
+  
+  // Cálculo de meses para alcanzar la meta de ahorro
+  const monthsToGoal = remainingMoney > 0 
+    ? Math.ceil((data.savings - remainingMoney) / remainingMoney) 
+    : Infinity;
 
   const pieData = [
     { name: "Alquiler/Hipoteca", value: data.rent },
@@ -129,10 +134,24 @@ export function BudgetSummary({ data }: BudgetSummaryProps) {
       <Card className="p-6">
         <h4 className="font-semibold mb-4">Progreso de Ahorro</h4>
         <Progress value={Math.min(savingsProgress, 100)} className="h-2" />
-        <p className="text-sm text-muted-foreground mt-2">
-          Has alcanzado el {Math.min(savingsProgress, 100).toFixed(1)}% de tu meta
-          de ahorro
-        </p>
+        <div className="mt-2 space-y-1">
+          <p className="text-sm text-muted-foreground">
+            Has alcanzado el {Math.min(savingsProgress, 100).toFixed(1)}% de tu meta
+            de ahorro
+          </p>
+          {monthsToGoal === Infinity ? (
+            <p className="text-sm text-destructive">
+              Con el ahorro actual, no podrás alcanzar tu meta. Necesitas aumentar tu ahorro mensual.
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              A este ritmo, alcanzarás tu meta de ahorro en aproximadamente{" "}
+              <span className="font-medium text-primary">
+                {monthsToGoal} {monthsToGoal === 1 ? "mes" : "meses"}
+              </span>
+            </p>
+          )}
+        </div>
       </Card>
 
       {/* Análisis Premium */}
