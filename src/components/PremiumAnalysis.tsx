@@ -1,7 +1,6 @@
 
 import { Card } from "./ui/card";
 import { Progress } from "./ui/progress";
-import { Badge } from "./ui/badge";
 import { AlertCircle, TrendingUp, DollarSign, CreditCard } from "lucide-react";
 
 interface PremiumAnalysisProps {
@@ -46,11 +45,6 @@ export function PremiumAnalysis({ percentages }: PremiumAnalysisProps) {
 
   return (
     <Card className="p-6 relative overflow-hidden">
-      <div className="absolute top-3 right-3">
-        <Badge variant="secondary" className="bg-primary text-white">
-          Premium
-        </Badge>
-      </div>
       <h4 className="font-semibold mb-6 flex items-center gap-2">
         <TrendingUp className="h-5 w-5" />
         Análisis Detallado
