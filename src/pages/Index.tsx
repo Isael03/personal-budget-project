@@ -10,6 +10,7 @@ interface BudgetData {
   utilities: number;
   groceries: number;
   savings: number;
+  currentSavings: number;
 }
 
 const Index = () => {

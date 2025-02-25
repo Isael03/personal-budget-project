@@ -5,14 +5,15 @@ export interface BudgetData {
   utilities: number;
   groceries: number;
   savings: number;
+  currentSavings: number;
 }
 
 export const calculateExpenses = (data: BudgetData) => {
   const totalExpenses = data.rent + data.utilities + data.groceries;
   const remainingMoney = data.income - totalExpenses;
-  const savingsProgress = (remainingMoney / data.savings) * 100;
+  const savingsProgress = ((data.currentSavings + remainingMoney) / data.savings) * 100;
   const monthsToGoal = remainingMoney > 0 
-    ? Math.ceil((data.savings - remainingMoney) / remainingMoney) 
+    ? Math.ceil((data.savings - data.currentSavings) / remainingMoney) 
     : Infinity;
 
   const rentPercentage = (data.rent / data.income) * 100;

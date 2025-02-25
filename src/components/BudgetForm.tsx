@@ -13,6 +13,7 @@ interface BudgetFormProps {
     utilities: number;
     groceries: number;
     savings: number;
+    currentSavings: number;
   }) => void;
 }
 
@@ -23,6 +24,7 @@ export function BudgetForm({ onSubmit }: BudgetFormProps) {
     utilities: "",
     groceries: "",
     savings: "",
+    currentSavings: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,6 +35,7 @@ export function BudgetForm({ onSubmit }: BudgetFormProps) {
       utilities: parseFloat(formData.utilities) || 0,
       groceries: parseFloat(formData.groceries) || 0,
       savings: parseFloat(formData.savings) || 0,
+      currentSavings: parseFloat(formData.currentSavings) || 0,
     });
   };
 
@@ -106,6 +109,22 @@ export function BudgetForm({ onSubmit }: BudgetFormProps) {
                 type="text"
                 placeholder="0.00"
                 value={formData.groceries}
+                onChange={handleChange}
+                className="pl-10"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="currentSavings">Ahorro Actual</Label>
+            <div className="relative">
+              <DollarSign className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+              <Input
+                id="currentSavings"
+                name="currentSavings"
+                type="text"
+                placeholder="0.00"
+                value={formData.currentSavings}
                 onChange={handleChange}
                 className="pl-10"
               />
