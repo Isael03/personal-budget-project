@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { BudgetForm } from "@/components/BudgetForm";
 import { BudgetSummary } from "@/components/BudgetSummary";
+import { Helmet } from "react-helmet";
 
 interface BudgetData {
   income: number;
@@ -19,27 +20,34 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container py-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl font-bold mb-4">
-            Calculadora de Presupuestos Personalizados
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Organiza tus finanzas de manera simple y efectiva
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>Calculadora de Presupuestos Personales | Gestiona tus Finanzas</title>
+        <meta name="description" content="Herramienta gratuita para calcular y gestionar tu presupuesto personal. Analiza tus gastos, ingresos y ahorro de manera efectiva." />
+      </Helmet>
+      
+      <main className="min-h-screen bg-background">
+        <div className="container py-8 max-w-7xl mx-auto">
+          <header className="text-center mb-12 animate-fade-in">
+            <h1 className="text-4xl font-bold mb-4">
+              Calculadora de Presupuestos Personalizados
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Organiza tus finanzas de manera simple y efectiva
+            </p>
+          </header>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-          <div className="w-full lg:w-1/3">
-            <BudgetForm onSubmit={handleBudgetSubmit} />
-          </div>
-          <div className="w-full lg:w-2/3">
-            {budgetData && <BudgetSummary data={budgetData} />}
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+            <aside className="w-full lg:w-1/3">
+              <BudgetForm onSubmit={handleBudgetSubmit} />
+            </aside>
+            <section className="w-full lg:w-2/3">
+              {budgetData && <BudgetSummary data={budgetData} />}
+            </section>
           </div>
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 
