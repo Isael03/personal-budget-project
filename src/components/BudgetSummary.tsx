@@ -3,6 +3,7 @@ import { BudgetData, calculateExpenses } from "@/utils/budgetCalculations";
 import { BudgetOverview } from "./BudgetOverview";
 import { SavingsProgress } from "./SavingsProgress";
 import { PremiumAnalysis } from "./PremiumAnalysis";
+import { FinancialTips } from "./FinancialTips";
 
 interface BudgetSummaryProps {
   data: BudgetData;
@@ -34,6 +35,8 @@ export function BudgetSummary({ data }: BudgetSummaryProps) {
           savingsPercentage: calculations.savingsPercentage,
         }}
       />
+
+      <FinancialTips />
     </div>
   );
 }
