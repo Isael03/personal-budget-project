@@ -1,1 +1,1 @@
-Poryecto realizado con IA
+Proyecto realizado con IA
